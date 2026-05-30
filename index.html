@@ -1015,7 +1015,7 @@
           ${l['Details'] ? `<div class="modal-field" style="grid-column:1/-1"><label>Details</label><span>${l['Details']}</span></div>` : ''}
           ${l['Directions'] ? `<div class="modal-field" style="grid-column:1/-1"><label>Directions</label><span>${l['Directions']}</span></div>` : ''}
         </div>
-        ${l['Google Earth Link'] ? `<a href="${l['Google Earth Link']}" target="_blank" style="display:inline-block;margin-bottom:1rem;font-size:0.85rem;color:var(--brown);text-decoration:underline;">View on Google Earth ↗</a>` : ''}
+        ${(l['Latitude'] && l['Longitude']) ? `<a href="https://earth.google.com/web/search/${l['Latitude']},${l['Longitude']}" target="_blank" style="display:inline-block;margin-bottom:1rem;font-size:0.85rem;color:var(--brown);text-decoration:underline;">View on Google Earth ↗</a>` : ''}
         ${financeHtml}
         <div class="contact-form">
           <h4>Inquire About This Property</h4>
@@ -1040,12 +1040,12 @@
             </div>
             <input type="hidden" name="property_apn" value="${l['APN']}">
             <input type="hidden" name="property_area" value="${l['Area'] || ''}">
-            <button type="submit" class="form-submit">Send Inquiry</button>
+            <button type="submit" class="form-submit" style="display:block;margin:0 auto;">Send Inquiry</button>
             <div class="form-success" id="inquiry-success-${l['APN'].replace(/[^a-z0-9]/gi,'_')}">Thanks! We'll be in touch soon.</div>
           </form>
         </div>
         <div style="text-align:center;padding:1.5rem 0 0.5rem;border-top:1px solid var(--tan-dark);margin-top:1.5rem;">
-          <a href="https://secure.geekpay.io/to/dirt-merchant-enterprises-llc/down-payment-99-05272026" target="_blank" style="display:inline-block;background:var(--brown);color:var(--tan);text-decoration:none;font-family:'Rye',serif;font-size:1rem;letter-spacing:0.05em;padding:0.85rem 2rem;border-radius:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Secure This Property</a>
+          <a href="https://secure.geekpay.io/to/dirt-merchant-enterprises-llc/down-payment-99-05272026" target="_blank" style="display:inline-block;background:var(--brown);color:var(--tan);text-decoration:none;font-family:'Rye',serif;font-size:1rem;letter-spacing:0.05em;padding:0.85rem 2rem;border-radius:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">SECURE THIS PROPERTY</a>
         </div>
       </div>`;
 
