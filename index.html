@@ -13,7 +13,7 @@
       --brown-50: rgba(61, 49, 0, 0.5);
       --tan: #e2dbce;
       --tan-dark: #cfc7b5;
-      --white: #f9f6f0;
+      --white: #ede8df;
       --text: #2a2200;
       --text-light: #6b5c2e;
     }
@@ -30,7 +30,7 @@
 
     /* ── HEADER ── */
     header {
-      background: var(--brown);
+      background: var(--tan);
       padding: 0 2rem;
       display: flex;
       align-items: center;
@@ -79,26 +79,45 @@
     }
 
     nav {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: auto auto;
+      gap: 0.4rem 0.75rem;
       align-items: center;
-      gap: 1.5rem;
     }
 
+    .nav-call {
+      grid-column: 1 / -1;
+      display: block;
+      text-align: center;
+      background: var(--brown);
+      color: var(--tan) !important;
+      text-decoration: none;
+      font-family: 'Rye', serif;
+      font-size: 0.975rem;
+      letter-spacing: 0.04em;
+      padding: 1.1rem 1rem;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+
+    .nav-call:hover { opacity: 0.85; }
+
     nav a {
-      color: var(--tan);
+      color: var(--brown);
       text-decoration: none;
       font-size: 0.85rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.7;
       transition: opacity 0.2s;
     }
 
     nav a:hover { opacity: 1; }
 
     .nav-cta {
-      background: var(--tan);
-      color: var(--brown) !important;
+      background: var(--brown);
+      color: var(--tan) !important;
       padding: 0.45rem 1.1rem;
       border-radius: 2px;
       font-weight: 600;
@@ -106,7 +125,7 @@
       transition: background 0.2s !important;
     }
 
-    .nav-cta:hover { background: var(--white) !important; }
+    .nav-cta:hover { background: var(--text) !important; }
 
     /* ── HERO ── */
     .hero {
@@ -634,6 +653,28 @@
       margin-top: 0.75rem;
     }
 
+    .card-ask {
+      padding: 0.6rem 1rem;
+      border-top: 1px solid var(--tan-dark);
+    }
+
+    .ask-btn {
+      display: block;
+      text-align: center;
+      background: var(--brown);
+      color: var(--tan);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem;
+      border-radius: 2px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .ask-btn:hover { opacity: 0.85; }
+
     /* ── FOOTER ── */
     footer {
       background: var(--brown);
@@ -672,23 +713,20 @@
 <!-- HEADER -->
 <header>
   <a class="logo-wrap" href="#">
-    <img src="logo.png" alt="Dirt Merchant Logo">
-    <div class="logo-text">
-      <span class="logo-main">Dirt Merchant</span>
-      <span class="logo-sub">Enterprises</span>
-    </div>
+    <img src="dme logo banner.png" alt="Dirt Merchant Enterprises" style="height:80px;width:auto;max-width:550px;">
   </a>
   <nav>
+    <a href="tel:4803318889" class="nav-call">Call The Dirt Merchant</a>
     <a href="#listings">Listings</a>
-    <a href="#contact-section">Contact</a>
-    <a href="#contact-section" class="nav-cta">Inquire Now</a>
+    <a href="mailto:zander@dirtmerchantenterprises.com">Email Us</a>
+    <a href="#contact-section">Inquire Now</a>
   </nav>
 </header>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Land For Sale</h1>
-  <p>Raw acreage, direct from the source. No middlemen, no nonsense.</p>
+  <p>Raw acreage, direct from the source.<br>No middlemen, no nonsense.</p>
 </div>
 
 <!-- FILTERS -->
@@ -751,8 +789,8 @@
 
 <!-- CONTACT SECTION -->
 <div style="padding: 2rem; max-width: 640px; margin: 0 auto;" id="contact-section">
-  <h2 style="font-family:'Rye',serif;font-size:1.6rem;color:var(--brown);margin-bottom:0.5rem;">Get In Touch</h2>
-  <p style="color:var(--text-light);margin-bottom:1.5rem;font-size:0.95rem;">Questions about a property or want to be notified of new listings? Reach out.</p>
+  <h2 style="font-family:'Rye',serif;font-size:1.6rem;color:var(--brown);margin-bottom:0.5rem;text-align:center;">Let's Talk Dirt</h2>
+  <p style="color:var(--text-light);margin-bottom:1.5rem;font-size:0.95rem;text-align:center;">Questions about a property or want to be notified of new listings? Reach out.</p>
   <form id="general-contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
     <div class="form-row">
       <div class="form-field">
@@ -765,10 +803,14 @@
       </div>
     </div>
     <div class="form-field" style="margin-bottom:0.75rem;">
+      <label>Phone</label>
+      <input type="tel" name="phone" placeholder="Your phone number">
+    </div>
+    <div class="form-field" style="margin-bottom:0.75rem;">
       <label>Message</label>
       <textarea name="message" placeholder="What's on your mind?"></textarea>
     </div>
-    <button type="submit" class="form-submit">Send Message</button>
+    <button type="submit" class="form-submit" style="display:block;margin:0 auto;">Send Message</button>
     <div class="form-success" id="general-success">Thanks! We'll be in touch soon.</div>
   </form>
 </div>
@@ -887,8 +929,8 @@
     grid.innerHTML = filteredListings.map((l, i) => {
       const img = l['Image 1'] || l['Image 2'] || l['Image 3'];
       const imgHtml = img
-        ? `<div class="card-img"><img src="${img}" alt="Property photo" onerror="this.parentElement.innerHTML='No Photo Available'"></div>`
-        : `<div class="card-img">No Photo Available</div>`;
+        ? `<div class="card-img"><img src="${img}" alt="Property photo" onerror="this.src='New Inventory Images Coming Soon.png'"></div>`
+        : `<div class="card-img"><img src="New Inventory Images Coming Soon.png" alt="Coming Soon"></div>`;
       const financeHtml = l['Retail Down']
         ? `<div class="card-finance">${fmt(l['Retail Down'])} down / ${fmt(l['Retail Monthly'])}/mo</div>`
         : '';
@@ -907,6 +949,9 @@
           <div class="card-footer">
             <div class="card-price">${fmt(l['Cash Price'])}</div>
             ${financeHtml}
+          </div>
+          <div class="card-ask">
+            <a class="ask-btn" href="${askEmailLink(l)}" onclick="event.stopPropagation()">Ask About This Dirt</a>
           </div>
         </div>`;
     }).join('');
@@ -1063,6 +1108,13 @@
     ['f-state','f-county','f-status'].forEach(id => document.getElementById(id).value = '');
     ['f-min-acres','f-max-acres','f-max-price'].forEach(id => document.getElementById(id).value = '');
     applyFilters();
+  }
+
+  // ── ASK EMAIL LINK ──
+  function askEmailLink(l) {
+    const subject = `Inquiry on "${l['APN']}"`;
+    const body = `Hi Zander,\n\nI'd like to hear about the parcel in ${l['County']} County with APN: ${l['APN']}.\n\nYou can email me back here or call me at: `;
+    return `mailto:zander@dirtmerchantenterprises.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   // ── INIT ──
