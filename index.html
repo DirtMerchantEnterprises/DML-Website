@@ -330,6 +330,18 @@
     .status-Under-Contract { background: #8b6914; color: #fff; }
     .status-Sold { background: #555; color: #fff; }
 
+    .tag-expandable {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 600;
+      background: #5a6e2a;
+      color: #fff;
+    }
+
     .card-body {
       padding: 1rem;
       flex: 1;
@@ -1001,6 +1013,7 @@
         <div class="modal-header">
           <div>
             <span class="card-status ${statusClass(l['Status'])}" style="margin-bottom:0.5rem;display:inline-block">${l['Status']}</span>
+            ${l['Adjacent Property'] === 'TRUE' ? `<span class="tag-expandable" style="margin-left:0.4rem;">Expandable</span>` : ''}
             <div class="modal-title">${l['Area'] || l['Location'] || 'Property'}</div>
           </div>
           <div class="modal-price">${fmt(l['Cash Price'])}</div>
