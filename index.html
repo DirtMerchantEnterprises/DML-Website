@@ -461,6 +461,19 @@
       border-color: var(--brown);
     }
 
+    .modal-hero-img {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      background: var(--tan-dark);
+    }
+
+    .modal-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .modal-imgs {
       display: flex;
       gap: 0.5rem;
@@ -960,10 +973,10 @@
   // ── OPEN MODAL ──
   function openModal(idx) {
     const l = filteredListings[idx];
-    const imgs = [l['Image 1'], l['Image 2'], l['Image 3']].filter(Boolean);
-    const imgsHtml = imgs.length
-      ? `<div class="modal-imgs">${imgs.map(src => `<img src="${src}" alt="Property" onerror="this.style.display='none'">`).join('')}</div>`
-      : '';
+    const imgs = [l['Image 1 embedded'], l['Image 2 embedded'], l['Image 3 embedded']]
+      .filter(src => src && !src.includes('#'));
+    const mainImg = imgs.length ? imgs[0] : 'New Inventory Images Coming Soon.png';
+    const imgsHtml = `<div class="modal-hero-img"><img src="${mainImg}" alt="Property photo" onerror="this.src='New Inventory Images Coming Soon.png'"></div>`;
 
     const financeHtml = (l['Retail Down'] || l['Land Arb Down']) ? `
       <div class="modal-finance">
@@ -1030,6 +1043,9 @@
             <button type="submit" class="form-submit">Send Inquiry</button>
             <div class="form-success" id="inquiry-success-${l['APN'].replace(/[^a-z0-9]/gi,'_')}">Thanks! We'll be in touch soon.</div>
           </form>
+        </div>
+        <div style="text-align:center;padding:1.5rem 0 0.5rem;border-top:1px solid var(--tan-dark);margin-top:1.5rem;">
+          <a href="https://secure.geekpay.io/to/dirt-merchant-enterprises-llc/down-payment-99-05272026" target="_blank" style="display:inline-block;background:var(--brown);color:var(--tan);text-decoration:none;font-family:'Rye',serif;font-size:1rem;letter-spacing:0.05em;padding:0.85rem 2rem;border-radius:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Secure This Property</a>
         </div>
       </div>`;
 
