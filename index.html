@@ -927,7 +927,7 @@
       return;
     }
     grid.innerHTML = filteredListings.map((l, i) => {
-      const img = l['Image 1'] || l['Image 2'] || l['Image 3'];
+      const img = (l['Image 1 embedded'] || '').includes('#') ? '' : l['Image 1 embedded'];
       const imgHtml = img
         ? `<div class="card-img"><img src="${img}" alt="Property photo" onerror="this.src='New Inventory Images Coming Soon.png'"></div>`
         : `<div class="card-img"><img src="New Inventory Images Coming Soon.png" alt="Coming Soon"></div>`;
